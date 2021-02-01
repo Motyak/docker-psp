@@ -1,39 +1,49 @@
-[Bash, Perl, Php, SQLite] => BPPS
+[Bash, Perl, PHP, SQLite] => BPPS_light (sans g++, make)
 
 alpine:3.13 image
-5.61MB
 
 installed packages
 (
-	sudo, build-base, git, curl, grep, perl packages (45.24MB)
-	PHP package (3.92 MB)
-	SQLite package (1.16MB)
+	bash
+	sudo, git, curl, grep, perl
+	PHP
+	SQLite
 )
-56.35MB
 
 total
-61.96MB
-_________________________
+67.1MB
+______________________________________________________________
+
+[Bash, Perl, PHP, SQLite] => BPPS
+
+alpine:3.13 image
+
+installed packages
+(
+	bash
+	sudo, g++, make, git, curl, grep, perl
+	PHP
+	SQLite
+)
+
+total
+254MB
+______________________________________________________________
+
 [Shell, Python, node.js, mongoDB] => SPNM
 
 alpine:3.13 image
-5.61MB
 
 installed packages
 (
-	sudo, git (13.76MB)
-	python (44.34 MB)
-	node.js (37.47 MB)
-	-> mongodb (1.48 MB)
-	-> http-server (25.4kB)
-	node.js dev, doc and npm (28.41MB)
-	mongoDB (106.41 MB)
+	sudo, git
+	python3
+	node.js
+	-> mongodb (driver)
+	-> http-server
+	node.js dev and npm
+	mongoDB
 )
 
 total
 237.51MB
-
---------------------------------------------------------------------
-
-Je comprends pas pourquoi l'image 'bash' est aussi lourde,
-alors qu'elle devrait peser 80MB grand max ???
