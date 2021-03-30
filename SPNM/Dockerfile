@@ -11,8 +11,8 @@ FROM alpine:3.13
 COPY entrypoint.sh /entrypoint.sh
 
 RUN apk add --no-cache sudo \
-    && apk add --no-cache git \
     && apk add --no-cache python3 \
+    && apk add --no-cache py3-pip \
     && apk add --no-cache nodejs \
     && apk add --no-cache nodejs-dev \
     && apk add --no-cache npm \

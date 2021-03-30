@@ -10,9 +10,6 @@ FROM alpine:3.13
 
 RUN apk add --no-cache bash \
     && apk add --no-cache sudo \
-    && apk add --no-cache g++ \
-    && apk add --no-cache make \
-    && apk add --no-cache git \
     && apk add --no-cache curl \
     && apk add --no-cache grep \
     && apk add --no-cache perl \
