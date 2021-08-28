@@ -1,0 +1,75 @@
+login: root (no pwd)
+# setup-keymap
+# vi /etc/network/interfaces
+    iface lo inet loopback
+
+    iface eth0 inet dhcp
+
+    iface eth1 inet dhcp
+# ifup lo; ifup eth0; ifup eth1
+# vi /etc/local.d/ifaces.start
+    #!/bin/sh
+    ifup eth0 &
+    ifup eth1 &
+    ifup lo &
+# chmod +x /etc/local.d/ifaces.start
+# rc-update add local
+# vi /etc/apk/repositories
+    http://dl-3.alpinelinux.org/alpine/v3.14/main
+    http://dl-3.alpinelinux.org/alpine/v3.14/community
+# apk update; apk upgrade
+
+# apk add --no-cache cfdisk
+# blkid
+/dev/sdX1: LABEL="some" UUID="..." TYPE="vfat"
+/dev/sdX2: LABEL="other" UUID="..." TYPE="ext4"
+# cfdisk /dev/sdX
+  GPT > NEW > OK > WRITE > yes > QUIT
+The following creates an ext4 partition with disabled journaling, to reduce write operations and allow the disk to spin down after the .apkovl 
+	and the packages have been read from the partition during the boot.
+# apk add --no-cache e2fsprogs
+# mkfs.ext4 -O ^has_journal /dev/sdXY   # the "-O ^has_journal" DISABLES journaling ("^" means "not")
+# mkdir -p /media/sda1/apk
+-----ATTENTION, ro signifie que c'est en lecture seule, faut l'enlever le temps d'ajouter des trucs----------------
+# echo "/dev/sdXY /media/sdXY ext4 noatime,ro 0 0" >> /etc/fstab
+# mount -a
+# apk del cfdisk e2fsprogs
+# lbu commit sda1
+------------on va remplacer ça par un repo privé où on add manuellement plutot qu'automatiquement au boot---------------
+# setup-apkcache
+    /media/sda1
+# apk add bash bash-doc bash-completion docker
+# vi /etc/passwd
+    *add bash as default shell for root*
+------------------------------------------------------------------------------------------------------------------------
+
+# vi /etc/apk/repositories
+    /media/sda1/apk
+
+au moment de boot...
+# apk index -o /media/sda1/apk/x86_64/APKINDEX.tar.gz /media/sda1/apk/x86_64/*.apk
+# apk index -o /media/sda1/apk/x86/APKINDEX.tar.gz /media/sda1/apk/x86/*.apk
+# apk update --allow-untrusted
+
+
+
+
+Pour fetch les apk packages dans la partition :
+cd <chemin>
+apk fetch -R bash g++ make cmake php8 perl sqlite python3 nodejs docker
+
+
+
+https://wiki.alpinelinux.org/wiki/Alpine_local_backup
+https://wiki.alpinelinux.org/wiki/Setting_up_disks_manually#For_.22diskless.22_and_.22data.22_disk_mode_installs_2
+https://wiki.alpinelinux.org/wiki/Alpine_local_backup#Saving_and_loading_ISO_image_customizations
+https://wiki.alpinelinux.org/wiki/Alpine_Linux_package_management#Local_Cache
+
+
+//script pour installer des paquets apk
+pkgs=bash perl php
+apk add $pkgs --allow-untrusted
+
+
+
+
