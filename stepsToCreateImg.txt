@@ -1,0 +1,25 @@
+First step : 
+-install ventoy on usb key (gpt), set reserved disk
+    space to 200MB
+-copy paste alpine linux isos in fat ventoy partition
+-create a partition formatted as FAT32,
+    size 200MB for apks and docker images (for alpine)
+
+Second step :
+-boot on alpine linux and create apkovl file on
+    the separated partition (follow instructions
+    from the other text file) + fetch the apk
+    packages we want
+
+Third step :
+-create the .img file from the usb key and
+    shrink it using gparted and truncate
+    https://askubuntu.com/questions/1174487/re-size-the-img-for-smaller-sd-card-how-to-shrink-a-bootable-sd-card-image
+
+
+
+Pour l'instant on fait que alpine x86_64 mais faudra aussi ajouter
+alpine pour arm64 (Mac nouvelles générations).
+Faire en sorte que les dockerfile soient rétro-compatibles avec les
+techniques actuelles (dépendant du docker hub sur internet).
+Faire en sorte que le .img soit personnalisable et extensible/évoluable.
