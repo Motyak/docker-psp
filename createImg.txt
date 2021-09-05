@@ -1,0 +1,15 @@
+1) Télécharger ventoy-x.x.xx-linux.tar.gz
+2) On branche la clé USB et on cherche son id /dev/sdx en faisant
+    ls -l /dev/disk/by-label
+3) On umount le device en question (lancer le script ventoy informera
+    si des partition sont toujours montées)
+4) Décompresser le tar gz ventoy. On lance le script ventoy 
+    (dans mon cas ma clé usb c'est /dev/sdb et je veux réserver 200MB 
+    d'espace libre):
+    sudo sh Ventoy2Disk.sh -i -r 200 /dev/sdb
+5) On formate la partition ventoy de exFAT vers FAT32 et créer une
+    nouvelle partition FAT32 avec l'espace libre (réservé au préalable)
+6) On télécharge l'iso de Alpine Linux Standard et on la copie dans la
+    partition ventoy FAT32
+ 
+A suivre...
