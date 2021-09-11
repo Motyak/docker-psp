@@ -1,0 +1,31 @@
+0) On plug la clé USB
+
+A FAIRE QU'UNE FOIS
+1) On crée une machine virtuelle pour booter sur live USB
+(elle n'utilise pas de disque virtuel donc prend très peu de place
+sur le disque dur)
+  -> On installe VirtualBox (si ce n'est pas déjà fait) et son extension pack 
+  -> Il faut créer une interface réseau privé hôte dans VirtualBox
+  -> On crée une machine virtuelle sans attacher de disque virtuel,
+        on y attache Plop Boot Manager 6 en live CD/DVD, une interface
+        NAT et une interface privé hôte, on active le contrôleur
+        USB 3.0 et on ajoute notre clé USB aux filtres
+
+3) On lance la machine virtuelle qui va boot sur Plop,
+    on sélectionne le périphérique USB puis la table de
+    partition MBR
+
+4) On choisit sur quel .iso boot depuis Ventoy
+
+5) Une fois que le .iso est chargé dans la RAM, on peut ensuite détacher la clé
+    usb de la machine virtuelle, puis l'éjecter du système hôte et
+    enfin la retirer de la machine. Si le temps de lancement est trop
+    long on peut aussi sauvegarder l'état de la machine pour le restaurer
+    plus tard, ce qui aura pour effet de créer un fichier .sav sur le
+    système de fichier de la machine hôte.
+
+
+Le live USB peut aussi être utilisé de manière traditionnelle c'est à dire 
+en bootant directement dessus en passant par un BIOS ou par Plop
+si le boot sur USB n'est pas nativement supporté par la machine.
+
